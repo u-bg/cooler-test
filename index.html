@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Games</title>
+
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5305579698272359"
+    crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #0d1020;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 25px;
+      text-align: center;
+      background: #151a33;
+      border-bottom: 2px solid #252b50;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 32px;
+    }
+
+    #search {
+      width: 90%;
+      max-width: 500px;
+      padding: 13px 18px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background: #242a49;
+      color: white;
+      font-size: 16px;
+    }
+
+    #search::placeholder {
+      color: #aaa;
+    }
+
+    .ad-container {
+      max-width: 1000px;
+      min-height: 100px;
+      margin: 20px auto;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .game {
+      text-decoration: none;
+      color: white;
+      background: #171c36;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+      border: 1px solid #252b50;
+    }
+
+    .game:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,.4);
+    }
+
+    .game img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-name {
+      padding: 13px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .games {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 My Games</h1>
+
+  <input
+    type="text"
+    id="search"
+    placeholder="Search games..."
+    onkeyup="searchGames()"
+  >
+</header>
+
+<!-- Ad -->
+<div class="ad-container">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-5305579698272359"
+       data-ad-slot="YOUR_AD_SLOT_ID"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="games" id="gameList">
+
+  <script>
+    const games = [];
+
+    for (let i = 1; i <= 40; i++) {
+      games.push(`
+        <a class="game" href="game${i}.html">
+          <img src="https://placehold.co/600x600/171838/ffffff?text=Game+${i}" alt="Game ${i}">
+          <div class="game-name">Game ${i}</div>
+        </a>
+      `);
+    }
+
+    document.getElementById("gameList").innerHTML = games.join("");
+  </script>
+
+</div>
+
+<script>
+  function searchGames() {
+    const input = document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+    const games = document.querySelectorAll(".game");
+
+    games.forEach(game => {
+      const name = game
+        .querySelector(".game-name")
+        .textContent
+        .toLowerCase();
+
+      game.style.display = name.includes(input) ? "" : "none";
+    });
+  }
+</script>
+
+</body>
+</html>
